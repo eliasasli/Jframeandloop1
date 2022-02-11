@@ -2,7 +2,7 @@ package com.JFrame111.game.main;
 
 import javax.swing.JFrame;
 import javax.swing.border.Border;
-import java.awt.*;
+import java.awt.BorderLayout;
 
 public class Game {
 

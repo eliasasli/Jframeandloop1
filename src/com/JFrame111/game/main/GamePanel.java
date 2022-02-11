@@ -1,5 +1,7 @@
 package com.JFrame111.game.main;
 
+import com.GameStateMananger;
+
 import java.awt.Dimension;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -18,6 +20,8 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
     private int FPS = 60;
     private long targetTime = 1000 / FPS;
 
+    private GameStateMananger gsm;
+
     public GamePanel(){
     setPreferredSize(new Dimension(WIDTH, HEIGHT));
 
@@ -34,7 +38,9 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 
     public void run() {
         long start, elapsed, wait;
-while(isRunning) {
+
+        gsm = new GameStateMananger();
+        while(isRunning) {
 
 start = System.nanoTime();
 
@@ -58,6 +64,7 @@ try{
 }
     }
     public void tick() {
+        gsm.tick();
 
     }
 
@@ -66,18 +73,21 @@ try{
 super.paintComponent(g);
 
 
-    }
-    public void keyTyped(KeyEvent keyEvent) {
+g.clearRect(0, 0, WIDTH, HEIGHT);
 
     }
-
-
-    public void keyPressed(KeyEvent keyEvent) {
+    public void keyTyped(KeyEvent g) {
 
     }
 
 
-    public void keyReleased(KeyEvent keyEvent) {
+    public void keyPressed(KeyEvent g) {
+        gsm.keypressed(g.getKeyCode());
 
+    }
+
+
+    public void keyReleased(KeyEvent g) {
+        gsm.keyReleased(g.getKeyCode());
     }
 }
